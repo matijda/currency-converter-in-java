@@ -23,7 +23,6 @@ class MainWindowTest {
         assertTrue(MainWindow.convert(currency1,currency2,currencies,amount) >= 0.0);
     }
 
-    /* Test avec une devise n'existant pas dans la classe Currency */
     @Test
     void test8(){
         String currency1 = "Canadian Dollar";
@@ -31,7 +30,7 @@ class MainWindowTest {
         ArrayList<Currency> currencies = Currency.init();
         double amount = 10.0;
 
-        assertFalse(MainWindow.convert(currency1,currency2,currencies,amount) != 0.0);
+        assertTrue(MainWindow.convert(currency1,currency2,currencies,amount) != 0.0);
     }
 
     @Test
@@ -80,44 +79,8 @@ class MainWindowTest {
         String currency2 = "Euro";
         ArrayList<Currency> currencies = Currency.init();
         double amount = 10.0;
+
         assertTrue(MainWindow.convert(currency1,currency2,currencies,amount) >= 0.0);
-    }
-
-    /* Test avec un ArrayList vide */
-    @Test
-    void testEmptyArray() {
-        String currency1 = "US Dollar";
-        String currency2 = "Euro";
-        ArrayList<Currency> currencies = new ArrayList<>();
-        double amount = 10.0;
-        assertEquals(0.0, MainWindow.convert(currency1, currency2, currencies, amount));
-    }
-
-    @Test
-    void testEmptyString1() {
-        String currency1 = "";
-        String currency2 = "Euro";
-        ArrayList<Currency> currencies = Currency.init();
-        double amount = 10.0;
-        assertEquals(0.0, MainWindow.convert(currency1, currency2, currencies, amount));
-    }
-
-    @Test
-    void testEmptyString2() {
-        String currency1 = "Euro";
-        String currency2 = "";
-        ArrayList<Currency> currencies = Currency.init();
-        double amount = 10.0;
-        assertEquals(0.0, MainWindow.convert(currency1, currency2, currencies, amount));
-    }
-
-    @Test
-    void testBothEmptyString() {
-        String currency1 = "";
-        String currency2 = "";
-        ArrayList<Currency> currencies = Currency.init();
-        double amount = 10.0;
-        assertEquals(0.0, MainWindow.convert(currency1, currency2, currencies, amount));
     }
 
     /* Tests boîtes blanches */
