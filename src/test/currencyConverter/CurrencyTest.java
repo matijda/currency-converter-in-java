@@ -2,47 +2,48 @@ package currencyConverter;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class CurrencyTest {
 
-    //T1 = { (50.0, USD vers GPB), (-50.0, USD vers GPB), (50.0, CAD vers GPB)}
+    /* Tests boîte noire (tests boîte blanche inclue puisque la méthode est dépourvue de structure de contrôle)*/
+
+    //T1 = { (-50.0, USD vers GPB), (0, USD vers GPB), (50.0, USD vers GPB)}
     @Test
     void test1() {
-        Currency USD = new Currency("US Dollar", "USD");
-        USD.defaultValues();
-        assertTrue(Currency.convert(50.0, USD.getExchangeValues().get("EUR")) > 0);
-    }
-
-    @Test
-    void test2(){
         Currency USD = new Currency("US Dollar", "USD");
         USD.defaultValues();
         assertTrue(Currency.convert(-50.0, USD.getExchangeValues().get("EUR")) < 0);
     }
 
     @Test
+    void test2(){
+        Currency USD = new Currency("US Dollar", "USD");
+        USD.defaultValues();
+        assertEquals(0.0, Currency.convert(0.0, USD.getExchangeValues().get("EUR")));
+    }
+
+    @Test
     void test3(){
-        Currency CAD = new Currency("Canadian Dollar", "CAD");
+        Currency CAD = new Currency("US Dollar", "USD");
         CAD.defaultValues();
         assertTrue(Currency.convert(50.0, CAD.getExchangeValues().get("EUR")) > 0);
     }
 
-    //T2 = {-1.0, 0.0, Infini}
+    // T2 = {-Infini, 0.0, Infini}
+
     @Test
     void test4(){
         Currency USD = new Currency("US Dollar", "USD");
         USD.defaultValues();
-        assertTrue(Currency.convert(-1.0, USD.getExchangeValues().get("EUR")) < 0);
+        assertTrue(Currency.convert(Double.NEGATIVE_INFINITY, USD.getExchangeValues().get("EUR")) < 0);
     }
 
     @Test
     void test5(){
         Currency USD = new Currency("US Dollar", "USD");
         USD.defaultValues();
-        assertTrue(Currency.convert(0.0, USD.getExchangeValues().get("EUR")) == 0);
+        assertEquals(0, (double) Currency.convert(0.0, USD.getExchangeValues().get("EUR")));
     }
 
     @Test
