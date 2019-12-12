@@ -102,8 +102,9 @@ class MainWindowTest {
 
         // Critère de couverture des i-chemins
 
-        // 0 passage de la 1re boucle for
+        // Saut des deux boucle for
         assertTrue(MainWindow.convert("", "", Currency.init(), 10.0) > 0);
+
         // 1 passage de la 1re boucle for
         assertTrue(MainWindow.convert("Euro", "US Dollar", Currency.init(), 10.0) > 0);
         // 2 passages de la 1re boucle for
@@ -117,8 +118,6 @@ class MainWindowTest {
         // 6 passages de la 1re boucle for
         assertTrue(MainWindow.convert("Euro", "Japanese Yen", Currency.init(), 10.0) > 0);
 
-        // 0 passage de la 2e boucle for
-        assertTrue(MainWindow.convert("", "", Currency.init(), 10.0) > 0);
         // 1 passage de la 2e boucle for
         assertTrue(MainWindow.convert("US Dollar", "Euro", Currency.init(), 10.0) > 0);
         // 2 passages de la 2re boucle for
